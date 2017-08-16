@@ -1,8 +1,10 @@
 import path from 'path'
 import webpack from 'webpack'
 
+import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import { ENDPOINT } from './config'
+const theme = require('./theme')
 
 const plugins = [
   new webpack.HotModuleReplacementPlugin(),
@@ -38,7 +40,15 @@ module.exports = {
       }, {
         test: /\.scss$/,
         loaders: ['style-loader', 'css-loader', 'sass-loader'],
-      }
+      },         {
+          test: /\.less$/,
+          loaders: ['style-loader', 'css-loader', `less-loader?{"sourceMap":true,"modifyVars":${theme}}`]
+          // loader: ExtractTextPlugin.extract(
+          //   'css?sourceMap!' +
+          //   'postcss!' +
+          //   `less-loader?{"sourceMap":true,"modifyVars":{"primary-color":"#000"}}`
+          // ),
+        }
     ]
   },
   resolve: {

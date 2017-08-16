@@ -9,7 +9,7 @@ if (module.hot) {
 }
 
 //styles
-import 'Client/styles/index.scss'
+import 'Client/styles/index.less'
 //
 import React from 'react'
 import ReactDom from 'react-dom'

@@ -5,6 +5,19 @@
     "react"
   ],
   "plugins": [
-    ["relay", {"compat": false, "schema": "./build/schema.json"}]
+    [
+      "relay",
+      {
+        "compat": false,
+        "schema": "./build/schema.json"
+      }
+    ],
+    [
+      "import",
+      {
+        "libraryName": "antd",
+        "style": true
+      }
+    ]
   ]
 }

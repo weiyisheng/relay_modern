@@ -1,13 +1,37 @@
 import React from 'react'
+import { QueryRenderer, graphql } from 'react-relay'
+import EnvironmentManager from 'App/environment/EnvironmentManager'
+import moment from 'moment'
+import 'moment/locale/zh-cn'
 
-import ScheduleBox from 'App/components/ScheduleBox'
+import ScheduleCalendar from 'App/containers/ScheduleCalendar'
+
+moment.locale('zh-cn')
 
 export default class Root extends React.Component {
 
   render() {
+    console.log(EnvironmentManager.getManager().getEnvironmentInstance().getStore().getSource());
     return (
       <div className="root-container">
-        <ScheduleBox />
+        <QueryRenderer
+          environment={EnvironmentManager.getManager().getEnvironmentInstance()}
+          query={graphql`
+            query RootQuery {
+              viewer {
+                ...ScheduleCalendar_viewer
+              }
+            }
+          `}
+          render={({error, props}) => {
+            if(props && props.viewer) {
+              return (
+                <ScheduleCalendar viewer={props.viewer}/>
+              )
+            }
+            return null
+          }}
+        />
       </div>
     )
   }

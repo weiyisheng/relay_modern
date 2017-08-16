@@ -447,7 +447,7 @@
               "deprecationReason": null
             },
             {
-              "name": "users",
+              "name": "members",
               "description": null,
               "args": [],
               "type": {
@@ -479,7 +479,7 @@
               "deprecationReason": null
             },
             {
-              "name": "date",
+              "name": "startDate",
               "description": null,
               "args": [],
               "type": {
@@ -581,7 +581,7 @@
               "defaultValue": null
             },
             {
-              "name": "users",
+              "name": "members",
               "description": null,
               "type": {
                 "kind": "SCALAR",
@@ -601,7 +601,7 @@
               "defaultValue": null
             },
             {
-              "name": "date",
+              "name": "startDate",
               "description": null,
               "type": {
                 "kind": "INPUT_OBJECT",
@@ -756,7 +756,7 @@
               "defaultValue": null
             },
             {
-              "name": "users",
+              "name": "members",
               "description": null,
               "type": {
                 "kind": "ENUM",
@@ -776,7 +776,7 @@
               "defaultValue": null
             },
             {
-              "name": "date",
+              "name": "startDate",
               "description": null,
               "type": {
                 "kind": "ENUM",
@@ -1093,7 +1093,7 @@
           "fields": null,
           "inputFields": [
             {
-              "name": "users",
+              "name": "members",
               "description": null,
               "type": {
                 "kind": "LIST",
@@ -1121,7 +1121,7 @@
               "defaultValue": null
             },
             {
-              "name": "date",
+              "name": "startDate",
               "description": null,
               "type": {
                 "kind": "SCALAR",
@@ -1221,7 +1221,7 @@
               "defaultValue": null
             },
             {
-              "name": "users",
+              "name": "members",
               "description": null,
               "type": {
                 "kind": "LIST",
@@ -1245,7 +1245,7 @@
               "defaultValue": null
             },
             {
-              "name": "date",
+              "name": "startDate",
               "description": null,
               "type": {
                 "kind": "SCALAR",

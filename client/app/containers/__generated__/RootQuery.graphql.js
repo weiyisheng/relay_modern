@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 467359300e4c3641b431833a194165f0
+ * @relayHash 7a64c7da65b0e440da527ec0f95cc709
  */
 
 /* eslint-disable */
@@ -10,31 +10,37 @@
 /*::
 import type {ConcreteBatch} from 'relay-runtime';
 export type RootQueryResponse = {|
-  +schedules: ?{|
-    +edges: ?$ReadOnlyArray<?{|
-      +node: ?{|
-        +users: ?$ReadOnlyArray<?string>;
-        +subject: string;
-        +date: ?any;
-      |};
-    |}>;
-  |};
+  +viewer: ?{| |};
 |};
 */
 
 
 /*
-query RootQuery(
-  $first: Float
-) {
-  schedules(first: $first) {
+query RootQuery {
+  viewer {
+    ...ScheduleCalendar_viewer
+    id
+  }
+}
+
+fragment ScheduleCalendar_viewer on Viewer {
+  id
+  schedules(first: 100) {
     edges {
       node {
-        users
+        members
         subject
-        date
+        startDate
         id
+        __typename
       }
+      cursor
+    }
+    pageInfo {
+      endCursor
+      hasNextPage
+      hasPreviousPage
+      startCursor
     }
   }
 }
@@ -42,14 +48,7 @@ query RootQuery(
 
 const batch /*: ConcreteBatch*/ = {
   "fragment": {
-    "argumentDefinitions": [
-      {
-        "kind": "LocalArgument",
-        "name": "first",
-        "type": "Float",
-        "defaultValue": null
-      }
-    ],
+    "argumentDefinitions": [],
     "kind": "Fragment",
     "metadata": null,
     "name": "RootQuery",
@@ -57,60 +56,15 @@ const batch /*: ConcreteBatch*/ = {
       {
         "kind": "LinkedField",
         "alias": null,
-        "args": [
-          {
-            "kind": "Variable",
-            "name": "first",
-            "variableName": "first",
-            "type": "Float"
-          }
-        ],
-        "concreteType": "ScheduleConnection",
-        "name": "schedules",
+        "args": null,
+        "concreteType": "Viewer",
+        "name": "viewer",
         "plural": false,
         "selections": [
           {
-            "kind": "LinkedField",
-            "alias": null,
-            "args": null,
-            "concreteType": "ScheduleEdge",
-            "name": "edges",
-            "plural": true,
-            "selections": [
-              {
-                "kind": "LinkedField",
-                "alias": null,
-                "args": null,
-                "concreteType": "Schedule",
-                "name": "node",
-                "plural": false,
-                "selections": [
-                  {
-                    "kind": "ScalarField",
-                    "alias": null,
-                    "args": null,
-                    "name": "users",
-                    "storageKey": null
-                  },
-                  {
-                    "kind": "ScalarField",
-                    "alias": null,
-                    "args": null,
-                    "name": "subject",
-                    "storageKey": null
-                  },
-                  {
-                    "kind": "ScalarField",
-                    "alias": null,
-                    "args": null,
-                    "name": "date",
-                    "storageKey": null
-                  }
-                ],
-                "storageKey": null
-              }
-            ],
-            "storageKey": null
+            "kind": "FragmentSpread",
+            "name": "ScheduleCalendar_viewer",
+            "args": null
           }
         ],
         "storageKey": null
@@ -123,14 +77,7 @@ const batch /*: ConcreteBatch*/ = {
   "metadata": {},
   "name": "RootQuery",
   "query": {
-    "argumentDefinitions": [
-      {
-        "kind": "LocalArgument",
-        "name": "first",
-        "type": "Float",
-        "defaultValue": null
-      }
-    ],
+    "argumentDefinitions": [],
     "kind": "Root",
     "name": "RootQuery",
     "operation": "query",
@@ -138,74 +85,161 @@ const batch /*: ConcreteBatch*/ = {
       {
         "kind": "LinkedField",
         "alias": null,
-        "args": [
-          {
-            "kind": "Variable",
-            "name": "first",
-            "variableName": "first",
-            "type": "Float"
-          }
-        ],
-        "concreteType": "ScheduleConnection",
-        "name": "schedules",
+        "args": null,
+        "concreteType": "Viewer",
+        "name": "viewer",
         "plural": false,
         "selections": [
           {
-            "kind": "LinkedField",
+            "kind": "ScalarField",
             "alias": null,
             "args": null,
-            "concreteType": "ScheduleEdge",
-            "name": "edges",
-            "plural": true,
+            "name": "id",
+            "storageKey": null
+          },
+          {
+            "kind": "LinkedField",
+            "alias": null,
+            "args": [
+              {
+                "kind": "Literal",
+                "name": "first",
+                "value": 100,
+                "type": "Float"
+              }
+            ],
+            "concreteType": "ScheduleConnection",
+            "name": "schedules",
+            "plural": false,
             "selections": [
               {
                 "kind": "LinkedField",
                 "alias": null,
                 "args": null,
-                "concreteType": "Schedule",
-                "name": "node",
+                "concreteType": "ScheduleEdge",
+                "name": "edges",
+                "plural": true,
+                "selections": [
+                  {
+                    "kind": "LinkedField",
+                    "alias": null,
+                    "args": null,
+                    "concreteType": "Schedule",
+                    "name": "node",
+                    "plural": false,
+                    "selections": [
+                      {
+                        "kind": "ScalarField",
+                        "alias": null,
+                        "args": null,
+                        "name": "members",
+                        "storageKey": null
+                      },
+                      {
+                        "kind": "ScalarField",
+                        "alias": null,
+                        "args": null,
+                        "name": "subject",
+                        "storageKey": null
+                      },
+                      {
+                        "kind": "ScalarField",
+                        "alias": null,
+                        "args": null,
+                        "name": "startDate",
+                        "storageKey": null
+                      },
+                      {
+                        "kind": "ScalarField",
+                        "alias": null,
+                        "args": null,
+                        "name": "id",
+                        "storageKey": null
+                      },
+                      {
+                        "kind": "ScalarField",
+                        "alias": null,
+                        "args": null,
+                        "name": "__typename",
+                        "storageKey": null
+                      }
+                    ],
+                    "storageKey": null
+                  },
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "args": null,
+                    "name": "cursor",
+                    "storageKey": null
+                  }
+                ],
+                "storageKey": null
+              },
+              {
+                "kind": "LinkedField",
+                "alias": null,
+                "args": null,
+                "concreteType": "PageInfo",
+                "name": "pageInfo",
                 "plural": false,
                 "selections": [
                   {
                     "kind": "ScalarField",
                     "alias": null,
                     "args": null,
-                    "name": "users",
+                    "name": "endCursor",
                     "storageKey": null
                   },
                   {
                     "kind": "ScalarField",
                     "alias": null,
                     "args": null,
-                    "name": "subject",
+                    "name": "hasNextPage",
                     "storageKey": null
                   },
                   {
                     "kind": "ScalarField",
                     "alias": null,
                     "args": null,
-                    "name": "date",
+                    "name": "hasPreviousPage",
                     "storageKey": null
                   },
                   {
                     "kind": "ScalarField",
                     "alias": null,
                     "args": null,
-                    "name": "id",
+                    "name": "startCursor",
                     "storageKey": null
                   }
                 ],
                 "storageKey": null
               }
             ],
-            "storageKey": null
+            "storageKey": "schedules{\"first\":100}"
+          },
+          {
+            "kind": "LinkedHandle",
+            "alias": null,
+            "args": [
+              {
+                "kind": "Literal",
+                "name": "first",
+                "value": 100,
+                "type": "Float"
+              }
+            ],
+            "handle": "connection",
+            "name": "schedules",
+            "key": "ScheduleCalendar_schedules",
+            "filters": null
           }
         ],
         "storageKey": null
       }
     ]
   },
-  "text": "query RootQuery(\n  $first: Float\n) {\n  schedules(first: $first) {\n    edges {\n      node {\n        users\n        subject\n        date\n        id\n      }\n    }\n  }\n}\n"
+  "text": "query RootQuery {\n  viewer {\n    ...ScheduleCalendar_viewer\n    id\n  }\n}\n\nfragment ScheduleCalendar_viewer on Viewer {\n  id\n  schedules(first: 100) {\n    edges {\n      node {\n        members\n        subject\n        startDate\n        id\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n      hasPreviousPage\n      startCursor\n    }\n  }\n}\n"
 };
 
 module.exports = batch;

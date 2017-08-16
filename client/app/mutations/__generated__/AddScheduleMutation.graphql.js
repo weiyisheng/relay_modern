@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 5d490713d3340119286cb7499ff389c8
+ * @relayHash 73feed76884d4814ac40725a9ea3c29d
  */
 
 /* eslint-disable */
@@ -9,31 +9,41 @@
 
 /*::
 import type {ConcreteBatch} from 'relay-runtime';
-export type ScheduleBoxQueryResponse = {|
-  +schedules: ?{|
-    +edges: ?$ReadOnlyArray<?{|
+export type AddScheduleMutationVariables = {|
+  input: {
+    members?: ?$ReadOnlyArray<?string>;
+    subject: string;
+    startDate?: ?any;
+    clientMutationId: string;
+  };
+|};
+
+export type AddScheduleMutationResponse = {|
+  +addSchedule: ?{|
+    +addedScheduleEdge: ?{|
       +node: ?{|
-        +users: ?$ReadOnlyArray<?string>;
+        +id: string;
+        +members: ?$ReadOnlyArray<?string>;
         +subject: string;
-        +date: ?any;
+        +startDate: ?any;
       |};
-    |}>;
+    |};
   |};
 |};
 */
 
 
 /*
-query ScheduleBoxQuery(
-  $first: Float
+mutation AddScheduleMutation(
+  $input: AddScheduleInput!
 ) {
-  schedules(first: $first) {
-    edges {
+  addSchedule(input: $input) {
+    addedScheduleEdge {
       node {
-        users
-        subject
-        date
         id
+        members
+        subject
+        startDate
       }
     }
   }
@@ -45,14 +55,14 @@ const batch /*: ConcreteBatch*/ = {
     "argumentDefinitions": [
       {
         "kind": "LocalArgument",
-        "name": "first",
-        "type": "Float",
+        "name": "input",
+        "type": "AddScheduleInput!",
         "defaultValue": null
       }
     ],
     "kind": "Fragment",
     "metadata": null,
-    "name": "ScheduleBoxQuery",
+    "name": "AddScheduleMutation",
     "selections": [
       {
         "kind": "LinkedField",
@@ -60,13 +70,13 @@ const batch /*: ConcreteBatch*/ = {
         "args": [
           {
             "kind": "Variable",
-            "name": "first",
-            "variableName": "first",
-            "type": "Float"
+            "name": "input",
+            "variableName": "input",
+            "type": "AddScheduleInput!"
           }
         ],
-        "concreteType": "ScheduleConnection",
-        "name": "schedules",
+        "concreteType": "AddSchedulePayload",
+        "name": "addSchedule",
         "plural": false,
         "selections": [
           {
@@ -74,8 +84,8 @@ const batch /*: ConcreteBatch*/ = {
             "alias": null,
             "args": null,
             "concreteType": "ScheduleEdge",
-            "name": "edges",
-            "plural": true,
+            "name": "addedScheduleEdge",
+            "plural": false,
             "selections": [
               {
                 "kind": "LinkedField",
@@ -89,7 +99,14 @@ const batch /*: ConcreteBatch*/ = {
                     "kind": "ScalarField",
                     "alias": null,
                     "args": null,
-                    "name": "users",
+                    "name": "id",
+                    "storageKey": null
+                  },
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "args": null,
+                    "name": "members",
                     "storageKey": null
                   },
                   {
@@ -103,7 +120,7 @@ const batch /*: ConcreteBatch*/ = {
                     "kind": "ScalarField",
                     "alias": null,
                     "args": null,
-                    "name": "date",
+                    "name": "startDate",
                     "storageKey": null
                   }
                 ],
@@ -116,24 +133,24 @@ const batch /*: ConcreteBatch*/ = {
         "storageKey": null
       }
     ],
-    "type": "RootQuery"
+    "type": "RootMutation"
   },
   "id": null,
   "kind": "Batch",
   "metadata": {},
-  "name": "ScheduleBoxQuery",
+  "name": "AddScheduleMutation",
   "query": {
     "argumentDefinitions": [
       {
         "kind": "LocalArgument",
-        "name": "first",
-        "type": "Float",
+        "name": "input",
+        "type": "AddScheduleInput!",
         "defaultValue": null
       }
     ],
     "kind": "Root",
-    "name": "ScheduleBoxQuery",
-    "operation": "query",
+    "name": "AddScheduleMutation",
+    "operation": "mutation",
     "selections": [
       {
         "kind": "LinkedField",
@@ -141,13 +158,13 @@ const batch /*: ConcreteBatch*/ = {
         "args": [
           {
             "kind": "Variable",
-            "name": "first",
-            "variableName": "first",
-            "type": "Float"
+            "name": "input",
+            "variableName": "input",
+            "type": "AddScheduleInput!"
           }
         ],
-        "concreteType": "ScheduleConnection",
-        "name": "schedules",
+        "concreteType": "AddSchedulePayload",
+        "name": "addSchedule",
         "plural": false,
         "selections": [
           {
@@ -155,8 +172,8 @@ const batch /*: ConcreteBatch*/ = {
             "alias": null,
             "args": null,
             "concreteType": "ScheduleEdge",
-            "name": "edges",
-            "plural": true,
+            "name": "addedScheduleEdge",
+            "plural": false,
             "selections": [
               {
                 "kind": "LinkedField",
@@ -170,7 +187,14 @@ const batch /*: ConcreteBatch*/ = {
                     "kind": "ScalarField",
                     "alias": null,
                     "args": null,
-                    "name": "users",
+                    "name": "id",
+                    "storageKey": null
+                  },
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "args": null,
+                    "name": "members",
                     "storageKey": null
                   },
                   {
@@ -184,14 +208,7 @@ const batch /*: ConcreteBatch*/ = {
                     "kind": "ScalarField",
                     "alias": null,
                     "args": null,
-                    "name": "date",
-                    "storageKey": null
-                  },
-                  {
-                    "kind": "ScalarField",
-                    "alias": null,
-                    "args": null,
-                    "name": "id",
+                    "name": "startDate",
                     "storageKey": null
                   }
                 ],
@@ -205,7 +222,7 @@ const batch /*: ConcreteBatch*/ = {
       }
     ]
   },
-  "text": "query ScheduleBoxQuery(\n  $first: Float\n) {\n  schedules(first: $first) {\n    edges {\n      node {\n        users\n        subject\n        date\n        id\n      }\n    }\n  }\n}\n"
+  "text": "mutation AddScheduleMutation(\n  $input: AddScheduleInput!\n) {\n  addSchedule(input: $input) {\n    addedScheduleEdge {\n      node {\n        id\n        members\n        subject\n        startDate\n      }\n    }\n  }\n}\n"
 };
 
 module.exports = batch;

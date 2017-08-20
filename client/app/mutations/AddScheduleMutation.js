@@ -38,6 +38,9 @@ function commit(viewerId, input, onCompleted, onError) {
         connectionInfo: [{
           key: 'ScheduleCalendar_schedules',
           rangeBehavior: 'append'
+        }, {
+          key: 'Schedules_schedules_1',
+          rangeBehavior: 'append'
         }],
         edgeName: 'addedScheduleEdge'
       }]

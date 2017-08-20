@@ -8,9 +8,9 @@
 
 /*::
 import type {ConcreteFragment} from 'relay-runtime';
-export type ScheduleCalendar_viewer = {|
+export type Schedules_viewer = {|
   +id: string;
-  +schedules: ?{|
+  +schedules_1: ?{|
     +edges: ?$ReadOnlyArray<?{|
       +node: ?{|
         +members: ?$ReadOnlyArray<?string>;
@@ -29,7 +29,7 @@ const fragment /*: ConcreteFragment*/ = {
       "kind": "LocalArgument",
       "name": "first",
       "type": "Float",
-      "defaultValue": 1
+      "defaultValue": 3
     }
   ],
   "kind": "Fragment",
@@ -40,12 +40,12 @@ const fragment /*: ConcreteFragment*/ = {
         "cursor": null,
         "direction": "forward",
         "path": [
-          "schedules"
+          "schedules_1"
         ]
       }
     ]
   },
-  "name": "ScheduleCalendar_viewer",
+  "name": "Schedules_viewer",
   "selections": [
     {
       "kind": "ScalarField",
@@ -56,10 +56,10 @@ const fragment /*: ConcreteFragment*/ = {
     },
     {
       "kind": "LinkedField",
-      "alias": "schedules",
+      "alias": "schedules_1",
       "args": null,
       "concreteType": "ScheduleConnection",
-      "name": "__ScheduleCalendar_schedules_connection",
+      "name": "__Schedules_schedules_1_connection",
       "plural": false,
       "selections": [
         {

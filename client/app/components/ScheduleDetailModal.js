@@ -21,7 +21,7 @@ class ScheduleDetailModal extends React.Component {
         onCancel={onCancel}
         okText="添加"
       >
-        <Collapse>
+        <Collapse accordion>
           {
             currentSchedules.map((s, index) => {
               return (

@@ -5,6 +5,7 @@ import moment from 'moment'
 import 'moment/locale/zh-cn'
 
 import ScheduleCalendar from 'App/containers/ScheduleCalendar'
+import Schedules from 'App/containers/Schedules'
 
 moment.locale('zh-cn')
 
@@ -26,7 +27,9 @@ export default class Root extends React.Component {
           render={({error, props}) => {
             if(props && props.viewer) {
               return (
-                <ScheduleCalendar viewer={props.viewer}/>
+                <div>
+                  <ScheduleCalendar viewer={props.viewer}/>
+                </div>
               )
             }
             return null

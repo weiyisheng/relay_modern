@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 7a64c7da65b0e440da527ec0f95cc709
+ * @relayHash f6196a3843b2388f533df2c229fd12dd
  */
 
 /* eslint-disable */
@@ -25,7 +25,7 @@ query RootQuery {
 
 fragment ScheduleCalendar_viewer on Viewer {
   id
-  schedules(first: 100) {
+  schedules(first: 1) {
     edges {
       node {
         members
@@ -104,7 +104,7 @@ const batch /*: ConcreteBatch*/ = {
               {
                 "kind": "Literal",
                 "name": "first",
-                "value": 100,
+                "value": 1,
                 "type": "Float"
               }
             ],
@@ -216,7 +216,7 @@ const batch /*: ConcreteBatch*/ = {
                 "storageKey": null
               }
             ],
-            "storageKey": "schedules{\"first\":100}"
+            "storageKey": "schedules{\"first\":1}"
           },
           {
             "kind": "LinkedHandle",
@@ -225,7 +225,7 @@ const batch /*: ConcreteBatch*/ = {
               {
                 "kind": "Literal",
                 "name": "first",
-                "value": 100,
+                "value": 1,
                 "type": "Float"
               }
             ],
@@ -239,7 +239,7 @@ const batch /*: ConcreteBatch*/ = {
       }
     ]
   },
-  "text": "query RootQuery {\n  viewer {\n    ...ScheduleCalendar_viewer\n    id\n  }\n}\n\nfragment ScheduleCalendar_viewer on Viewer {\n  id\n  schedules(first: 100) {\n    edges {\n      node {\n        members\n        subject\n        startDate\n        id\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n      hasPreviousPage\n      startCursor\n    }\n  }\n}\n"
+  "text": "query RootQuery {\n  viewer {\n    ...ScheduleCalendar_viewer\n    id\n  }\n}\n\nfragment ScheduleCalendar_viewer on Viewer {\n  id\n  schedules(first: 1) {\n    edges {\n      node {\n        members\n        subject\n        startDate\n        id\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n      hasPreviousPage\n      startCursor\n    }\n  }\n}\n"
 };
 
 module.exports = batch;

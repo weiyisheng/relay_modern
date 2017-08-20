@@ -85,6 +85,7 @@ class ScheduleCalendar extends React.Component {
 
   render() {
     const { selectedValue, currentSchedules, addLoading } = this.state
+    console.log(" schedules : ", this.props.viewer.schedules);
     return (
       <div style={{padding: 30}}>
         <Card>
@@ -118,7 +119,7 @@ export default createFragmentContainer(
   ScheduleCalendar,
   graphql.experimental`
     fragment ScheduleCalendar_viewer on Viewer
-      @argumentDefinitions(first: {type: "Float", defaultValue: 100}) {
+      @argumentDefinitions(first: {type: "Float", defaultValue: 1}) {
       id
       schedules(first: $first) @connection(key: "ScheduleCalendar_schedules") {
         edges {
